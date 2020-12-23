@@ -48,6 +48,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -72,6 +73,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &8670830960171667347
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -94,6 +96,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chunkStandardSize: 100
   subdivisions: 30
-  scale: 40
-  heightScale: 10
+  scale: 20
+  heightScale: 5
   sourceMat: {fileID: 2100000, guid: f57fd159114da3e468f1b940987b4d5c, type: 2}

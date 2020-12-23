@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class Chunk : MonoBehaviour
 {
-    public float chunkStandardSize = 10;
+    public float chunkStandardSize = 100;
 
     public int subdivisions;
     public float scale, heightScale;
     public Material sourceMat;
     private Material material;
     float[,] noiseMap;
+    private bool text;
 
     int xCoord, yCoord;
 
 
     void Start()
     {
+        text = false;
         material = new Material(sourceMat);
         this.GetComponent<MeshRenderer>().material = material;
     }
@@ -40,7 +42,17 @@ public class Chunk : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
-            this.GetComponent<MeshRenderer>().sharedMaterial.mainTexture = createTexture(noiseMap);
+            if (!text)
+            {
+                this.GetComponent<MeshRenderer>().sharedMaterial = material;
+                this.GetComponent<MeshRenderer>().sharedMaterial.mainTexture = createTexture(noiseMap);
+                text = true;
+            }
+            else
+            {
+                this.GetComponent<MeshRenderer>().sharedMaterial = sourceMat;
+                text = false;
+            }
         }
     }
 
@@ -93,7 +105,7 @@ public class Chunk : MonoBehaviour
         {
             for (int x = 0; x < subs + 1; x++)
             {
-                vertices[y * (subs + 1) + x] = new Vector3((x * (width / subs))-(width/2), noiseMap[x, y]*heightScale, ((subs - y) * (height / subs)) - (height / 2));
+                vertices[y * (subs + 1) + x] = new Vector3((x * (width / subs))-(width/2), noiseMap[x, y] * heightScale, ((subs - y) * (height / subs)) - (height / 2));
                 uv[y * (subs + 1) + x] = new Vector2(((float)x) / (subs + 1), ((float)y) / (subs + 1));
             }
         }
